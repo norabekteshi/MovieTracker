@@ -95,7 +95,7 @@ final class HomeViewController: UIViewController {
         dimming.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         dimming.alpha = 0
         dimming.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        dimming.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideMenu)))
+        dimming.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDimmingTap)))
         view.addSubview(dimming)
         dimmingView = dimming
 
@@ -114,7 +114,7 @@ final class HomeViewController: UIViewController {
         }
     }
 
-    @objc private func hideMenu() {
+    @objc private func handleDimmingTap() {
         hideMenu(completion: nil)
     }
 
