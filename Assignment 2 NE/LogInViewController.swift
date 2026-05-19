@@ -35,6 +35,10 @@ final class LogInViewController: UIViewController {
 
     private func validateFields() -> Bool {
         let fields = view.findSubviews(ofType: UITextField.self)
+        guard !fields.isEmpty else {
+            showSimpleAlert(title: "Missing Fields", message: "No input fields were found. Please add text fields to the Login screen.")
+            return false
+        }
         let hasEmpty = fields.contains { ($0.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
         if hasEmpty {
             showSimpleAlert(title: "Missing Info", message: "Please fill in all fields before logging in.")

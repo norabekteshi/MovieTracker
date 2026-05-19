@@ -32,6 +32,8 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.hidesBackButton = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         configureHeader()
         configureCollectionView()
     }
