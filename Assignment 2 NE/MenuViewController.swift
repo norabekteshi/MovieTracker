@@ -1,5 +1,15 @@
 import UIKit
 
+enum MenuItem: String, CaseIterable {
+    case theaters = "Nearest Theaters"
+    case imdb = "IMDb Ratings"
+    case logout = "Logout"
+}
+
+protocol MenuViewControllerDelegate: AnyObject {
+    func menuViewController(_ menu: MenuViewController, didSelect item: MenuItem)
+}
+
 final class MenuViewController: UIViewController {
     weak var delegate: MenuViewControllerDelegate?
 
