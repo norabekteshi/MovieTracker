@@ -18,6 +18,7 @@ final class LogInViewController: UIViewController {
     }
 
     @objc private func handleLogin() {
+        guard validateFields() else { return }
         let home = HomeViewController()
         navigationController?.pushViewController(home, animated: true)
     }
@@ -30,6 +31,16 @@ final class LogInViewController: UIViewController {
     @objc private func handleForgot() {
         let forgot: ForgotPasswordViewController = ForgotPasswordViewController.instantiate()
         navigationController?.pushViewController(forgot, animated: true)
+    }
+
+    private func validateFields() -> Bool {
+        let fields = view.findSubviews(ofType: UITextField.self)
+        let hasEmpty = fields.contains { ($0.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        if hasEmpty {
+            showSimpleAlert(title: "Missing Info", message: "Please fill in all fields before logging in.")
+            return false
+        }
+        return true
     }
 
     private func findButton(title: String) -> UIButton? {

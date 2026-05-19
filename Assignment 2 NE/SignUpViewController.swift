@@ -17,12 +17,23 @@ final class SignUpViewController: UIViewController {
     }
 
     @objc private func handleSignUp() {
+        guard validateFields() else { return }
         let home = HomeViewController()
         navigationController?.pushViewController(home, animated: true)
     }
 
     @objc private func handleLogin() {
         navigationController?.popViewController(animated: true)
+    }
+
+    private func validateFields() -> Bool {
+        let fields = view.findSubviews(ofType: UITextField.self)
+        let hasEmpty = fields.contains { ($0.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        if hasEmpty {
+            showSimpleAlert(title: "Missing Info", message: "Please fill in all fields before signing up.")
+            return false
+        }
+        return true
     }
 
     private func findButton(title: String) -> UIButton? {

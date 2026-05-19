@@ -12,4 +12,15 @@ extension UIView {
         }
         return nil
     }
+
+    func findSubviews<T: UIView>(ofType type: T.Type) -> [T] {
+        var matches: [T] = []
+        if let view = self as? T {
+            matches.append(view)
+        }
+        for subview in subviews {
+            matches.append(contentsOf: subview.findSubviews(ofType: type))
+        }
+        return matches
+    }
 }
