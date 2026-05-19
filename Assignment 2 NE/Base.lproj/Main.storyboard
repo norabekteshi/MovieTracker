@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5bB-zj-MfQ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
@@ -8,10 +8,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Assignment_2_NE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-1108" y="-116"/>
+        </scene>
         <!--Home-->
         <scene sceneID="oRL-QZ-KkC">
             <objects>
-                <viewController title="Home" id="cqz-aD-g5j" sceneMemberID="viewController">
+                <viewController title="Home" id="cqz-aD-g5j" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vbf-zc-faf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +53,7 @@
         <!--Sign Up View-->
         <scene sceneID="Kcj-OC-vPr">
             <objects>
-                <viewController title="Sign Up View" id="1ZK-Vs-7ug" sceneMemberID="viewController">
+                <viewController title="Sign Up View" id="1ZK-Vs-7ug" customClass="SignUpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KLG-g3-qBs">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -209,7 +224,7 @@
         <!--Login Page-->
         <scene sceneID="trt-C5-gDI">
             <objects>
-                <viewController title="Login Page" id="5bB-zj-MfQ" sceneMemberID="viewController">
+                <viewController title="Login Page" id="5bB-zj-MfQ" customClass="LogInViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="50C-J4-fzb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -347,7 +362,7 @@
         <!--Web-->
         <scene sceneID="C08-bk-hDT">
             <objects>
-                <viewController title="Web" id="AYA-GY-TWs" sceneMemberID="viewController">
+                <viewController title="Web" id="AYA-GY-TWs" customClass="WebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QPe-UV-EPx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -362,7 +377,7 @@
         <!--Map-->
         <scene sceneID="WlE-zh-hwu">
             <objects>
-                <viewController title="Map" id="tye-BV-I2j" sceneMemberID="viewController">
+                <viewController title="Map" id="tye-BV-I2j" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e4a-Me-MsG">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -377,7 +392,7 @@
         <!--Forgot Password-->
         <scene sceneID="0Sx-Wm-COg">
             <objects>
-                <viewController title="Forgot Password" id="rNh-VX-4Uc" sceneMemberID="viewController">
+                <viewController title="Forgot Password" id="rNh-VX-4Uc" customClass="ForgotPasswordViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="noC-KG-rzW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
