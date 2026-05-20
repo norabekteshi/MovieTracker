@@ -178,10 +178,10 @@ final class HomeViewController: UIViewController {
     }
 
     @objc private func closeMenu() {
-        closeMenu(then: nil)
+        hideMenu(then: nil)
     }
 
-    private func closeMenu(then action: (() -> Void)?) {
+    private func hideMenu(then action: (() -> Void)?) {
         guard isMenuOpen, let menu = menuViewController else {
             action?()
             return
@@ -228,7 +228,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 extension HomeViewController: MenuViewControllerDelegate {
     func menuDidSelect(_ item: MenuItem) {
-        closeMenu { [weak self] in
+        hideMenu { [weak self] in
             guard let self else { return }
             switch item {
             case .cinemas:
