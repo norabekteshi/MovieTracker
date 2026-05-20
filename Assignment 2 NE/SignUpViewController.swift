@@ -19,15 +19,17 @@ final class SignUpViewController: UIViewController {
     // TASK 9: Sign Up -> Home THROUGH CODE, passing the User data.
     @IBAction func signUpTapped(_ sender: UIButton) {
         let user = User(username: usernameTextField.text ?? "",
-                        email: emailTextField.text ?? "",
-                        password: passwordTextField.text ?? "")
-
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let home = storyboard.instantiateViewController(
-            withIdentifier: "HomeViewController") as? HomeViewController else {
-            return
+                             email: emailTextField.text ?? "",
+                             password: passwordTextField.text ?? "")
+      
+             UserStore.shared.register(user)   // Sign Up creates the user
+      
+             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+             guard let home = storyboard.instantiateViewController(
+                 withIdentifier: "HomeViewController") as? HomeViewController else {
+                 return
         }
         home.user = user
-        navigationController?.pushViewController(home, animated: true)
+                navigationController?.pushViewController(home, animated: true)
     }
 }

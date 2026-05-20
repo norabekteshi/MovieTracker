@@ -18,7 +18,13 @@ final class ForgotPasswordViewController: UIViewController {
 
     // TASK 13: our chosen functionality (minimal, no alerts).
     @IBAction func resetTapped(_ sender: UIButton) {
-        print("Password reset for \(emailTextField.text ?? "") — new password set.")
+        let email = emailTextField.text ?? ""
+                let newPassword = newPasswordTextField.text ?? ""
+         
+                let success = UserStore.shared.resetPassword(email: email,
+                                                             newPassword: newPassword)
+                print(success ? "Password reset for \(email)."
+                              : "No account found for \(email).")
     }
 
     // The Back button is wired as a Storyboard segue to Login,
