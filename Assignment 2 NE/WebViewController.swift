@@ -1,10 +1,3 @@
-//
-//  WebViewController.swift
-//  MovieTracker
-//
-//  PHASE 2 — REQ 7: a WKWebView. REQ 8: constraints created in code.
-//
-
 import UIKit
 import WebKit
 
@@ -26,7 +19,6 @@ final class WebViewController: UIViewController {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(activityIndicator)
 
-        // REQ 8: constraints in code.
         NSLayoutConstraint.activate([
             webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -37,7 +29,6 @@ final class WebViewController: UIViewController {
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
 
-        // REQ 7: load a movie-related web page.
         if let url = URL(string: "https://www.imdb.com/chart/top/") {
             webView.load(URLRequest(url: url))
         }

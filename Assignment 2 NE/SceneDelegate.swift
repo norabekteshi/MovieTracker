@@ -1,12 +1,3 @@
-//
-//  SceneDelegate.swift
-//  MovieTracker
-//
-//  Standard scene delegate. For a Storyboard-based app the system
-//  creates the window and loads Main.storyboard automatically, so
-//  scene(_:willConnectTo:) only needs the default guard.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

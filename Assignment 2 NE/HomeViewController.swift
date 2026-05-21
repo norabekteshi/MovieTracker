@@ -1,29 +1,15 @@
-//
-//  HomeViewController.swift
-//  MovieTracker
-//
-//  PHASE 1 — TASKS 6, 9, 10, 11  (receives the User; Storyboard scroll view + label).
-//  PHASE 2 — REQ 2 (UICollectionView), REQ 3 (UIScrollView from Storyboard),
-//            REQ 4 (CGRect frame), REQ 5 (entrance animation), REQ 6 (slide-in menu),
-//            REQ 8 (NSLayoutConstraint in code).
-//
-
 import UIKit
 
 final class HomeViewController: UIViewController {
 
-    // TASK 11 / REQ 3: these two elements live in the STORYBOARD and are
-    // constrained in the Storyboard. Connect them in Interface Builder.
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
 
-    // TASK 6 / 9 / 10: the User handed over from Login (segue) or Sign Up (code).
     var user: User?
 
     private var rowContainers: [UIView] = []
     private var didAnimateRows = false
 
-    // Slide-in menu state (REQ 4 & 6).
     private var dimmingView: UIView?
     private var menuViewController: MenuViewController?
     private var isMenuOpen = false
@@ -34,12 +20,10 @@ final class HomeViewController: UIViewController {
         title = "MovieTracker"
         navigationItem.hidesBackButton = true
 
-        // Hamburger button that opens the menu (REQ 6 trigger).
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "line.3.horizontal"),
             style: .plain, target: self, action: #selector(openMenu))
 
-        // TASK 10: display the data carried over from the previous screen.
         welcomeLabel.text = "Welcome back, \(user?.username ?? "Guest")!"
         welcomeLabel.font = .systemFont(ofSize: 22, weight: .bold)
 
@@ -48,10 +32,8 @@ final class HomeViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animateRowsIn()                 // REQ 5
+        animateRowsIn()
     }
-
-    // MARK: - REQ 2: build horizontal UICollectionView rows in code.
 
     private func buildMovieRows() {
         let contentStack = UIStackView()
@@ -60,7 +42,6 @@ final class HomeViewController: UIViewController {
         contentStack.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentStack)
 
-        // REQ 8: constraints created in code with NSLayoutConstraint.
         NSLayoutConstraint.activate([
             contentStack.topAnchor.constraint(
                 equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 18),
@@ -81,7 +62,6 @@ final class HomeViewController: UIViewController {
         }
     }
 
-    /// One genre row = a title label + a horizontal collection view.
     private func makeRow(for section: MovieSection, tag: Int) -> UIView {
         let titleLabel = UILabel()
         titleLabel.text = section.title
@@ -108,7 +88,7 @@ final class HomeViewController: UIViewController {
 
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: layout)
-        collectionView.tag = tag                 // identifies which genre
+        collectionView.tag = tag
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
@@ -123,8 +103,6 @@ final class HomeViewController: UIViewController {
         rowStack.spacing = 10
         return rowStack
     }
-
-    // MARK: - REQ 5: a staggered spring entrance animation (different from the menu).
 
     private func animateRowsIn() {
         guard !didAnimateRows else { return }
@@ -144,8 +122,6 @@ final class HomeViewController: UIViewController {
         }
     }
 
-    // MARK: - REQ 6: slide-in menu with animation.
-
     @objc private func openMenu() {
         guard !isMenuOpen else { return }
         isMenuOpen = true
@@ -163,7 +139,6 @@ final class HomeViewController: UIViewController {
         menu.delegate = self
         addChild(menu)
 
-        // REQ 4: the menu panel's frame is set via CGRect — off-screen to start.
         let menuWidth = view.bounds.width * 0.7
         menu.view.frame = CGRect(x: -menuWidth, y: 0,
                                  width: menuWidth, height: view.bounds.height)
@@ -204,8 +179,6 @@ final class HomeViewController: UIViewController {
     }
 }
 
-// MARK: - REQ 2: UICollectionView data source / delegate
-
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView,
@@ -221,10 +194,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.configure(with: movie)
         return cell
     }
-
 }
-
-// MARK: - Menu callback
 
 extension HomeViewController: MenuViewControllerDelegate {
     func menuDidSelect(_ item: MenuItem) {

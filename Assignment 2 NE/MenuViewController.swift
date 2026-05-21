@@ -1,11 +1,3 @@
-//
-//  MenuViewController.swift
-//  MovieTracker
-//
-//  PHASE 2 — REQ 1: a UITableView listing the menu options.
-//  Shown as a slide-in panel (REQ 6) by HomeViewController.
-//
-
 import UIKit
 
 enum MenuItem: String, CaseIterable {
@@ -37,7 +29,6 @@ final class MenuViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
 
-        // REQ 1: a UITableView.
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .clear
@@ -47,7 +38,6 @@ final class MenuViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
 
-        // REQ 8: constraints in code.
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),

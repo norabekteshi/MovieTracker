@@ -1,11 +1,3 @@
-//
-//  MovieCell.swift
-//  MovieTracker
-//
-//  PHASE 2 — REQ 2: the cell used by the movie UICollectionView.
-//  REQ 8: all of its constraints are created in code with NSLayoutConstraint.
-//
-
 import UIKit
 
 final class MovieCell: UICollectionViewCell {
@@ -50,7 +42,6 @@ final class MovieCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(ratingLabel)
 
-        // REQ 8: constraints in code.
         NSLayoutConstraint.activate([
             posterView.topAnchor.constraint(equalTo: contentView.topAnchor),
             posterView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -77,8 +68,6 @@ final class MovieCell: UICollectionViewCell {
         posterView.backgroundColor = Self.posterColor(for: movie.title)
     }
 
-    /// Deterministic placeholder colour derived from the title
-    /// (so each movie keeps a consistent "poster" colour).
     private static func posterColor(for title: String) -> UIColor {
         let palette: [UIColor] = [
             .systemIndigo, .systemTeal, .systemPink, .systemOrange,

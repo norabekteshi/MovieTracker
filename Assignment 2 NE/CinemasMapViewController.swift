@@ -1,14 +1,3 @@
-//
-//  CinemasMapViewController.swift
-//  MovieTracker
-//
-//  PHASE 2 — REQ 9 (MKMapView + annotations), REQ 10 (user location),
-//            REQ 11 (drawing a route between two points), REQ 8 (code constraints).
-//
-//  How to use: the map shows cinemas around Pristina. Tap any cinema pin
-//  and a driving route is drawn to it from your location.
-//
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -19,8 +8,6 @@ final class CinemasMapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var hasCentered = false
 
-    // Fallback start point (Pristina centre) so a route ALWAYS draws,
-    // even if the simulator has no simulated location set.
     private let cityCenter = CLLocationCoordinate2D(latitude: 42.6629,
                                                     longitude: 21.1655)
 
@@ -29,7 +16,6 @@ final class CinemasMapViewController: UIViewController {
         let coordinate: CLLocationCoordinate2D
     }
 
-    // REQ 9: the cinemas placed as annotations on the map.
     private let cinemas: [Cinema] = [
         Cinema(name: "Cineplexx Prishtina",
                coordinate: CLLocationCoordinate2D(latitude: 42.6283, longitude: 21.1480)),
@@ -52,11 +38,10 @@ final class CinemasMapViewController: UIViewController {
 
     private func setupMap() {
         mapView.delegate = self
-        mapView.showsUserLocation = true           // REQ 10
+        mapView.showsUserLocation = true
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
 
-        // REQ 8: constraints in code.
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -70,7 +55,6 @@ final class CinemasMapViewController: UIViewController {
         mapView.setRegion(region, animated: false)
     }
 
-    // REQ 9: place an annotation (pin) for every cinema.
     private func addCinemaAnnotations() {
         for cinema in cinemas {
             let pin = MKPointAnnotation()
@@ -81,14 +65,12 @@ final class CinemasMapViewController: UIViewController {
         }
     }
 
-    // REQ 10: ask permission, then start receiving the user's location.
     private func setupLocation() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
     }
 
-    // REQ 11: calculate and draw a route between two points.
     private func drawRoute(to destination: CLLocationCoordinate2D) {
         let start = mapView.userLocation.location?.coordinate ?? cityCenter
 
@@ -111,11 +93,7 @@ final class CinemasMapViewController: UIViewController {
     }
 }
 
-// MARK: - MKMapViewDelegate
-
 extension CinemasMapViewController: MKMapViewDelegate {
-
-    // REQ 11: draw the route line on the map.
     func mapView(_ mapView: MKMapView,
                  rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let polyline = overlay as? MKPolyline {
@@ -127,15 +105,12 @@ extension CinemasMapViewController: MKMapViewDelegate {
         return MKOverlayRenderer(overlay: overlay)
     }
 
-    // Tapping a cinema pin draws a route to it.
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation,
               !(annotation is MKUserLocation) else { return }
         drawRoute(to: annotation.coordinate)
     }
 }
-
-// MARK: - CLLocationManagerDelegate (REQ 10)
 
 extension CinemasMapViewController: CLLocationManagerDelegate {
 

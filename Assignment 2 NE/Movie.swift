@@ -1,10 +1,3 @@
-//
-//  Movie.swift
-//  MovieTracker
-//
-//  Hardcoded sample data — no network / API key required.
-//
-
 import Foundation
 
 struct Movie {
@@ -18,7 +11,6 @@ struct MovieSection {
     let movies: [Movie]
 }
 
-/// Static catalogue used by HomeViewController's collection views.
 enum MovieData {
     static let sections: [MovieSection] = [
         MovieSection(title: "Trending Now", movies: [
