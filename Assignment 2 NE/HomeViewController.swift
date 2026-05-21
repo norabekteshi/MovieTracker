@@ -16,16 +16,19 @@ final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .black
+        scrollView.backgroundColor = .black
         title = "MovieTracker"
         navigationItem.hidesBackButton = true
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "line.3.horizontal"),
             style: .plain, target: self, action: #selector(openMenu))
+        navigationItem.leftBarButtonItem?.tintColor = .white
 
         welcomeLabel.text = "Welcome back, \(user?.username ?? "Guest")!"
         welcomeLabel.font = .systemFont(ofSize: 22, weight: .bold)
+        welcomeLabel.textColor = .white
 
         buildMovieRows()
     }
@@ -66,10 +69,11 @@ final class HomeViewController: UIViewController {
         let titleLabel = UILabel()
         titleLabel.text = section.title
         titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
-        titleLabel.textColor = .label
+        titleLabel.textColor = .white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let labelHolder = UIView()
+        labelHolder.backgroundColor = .clear
         labelHolder.addSubview(titleLabel)
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(
@@ -101,6 +105,7 @@ final class HomeViewController: UIViewController {
         let rowStack = UIStackView(arrangedSubviews: [labelHolder, collectionView])
         rowStack.axis = .vertical
         rowStack.spacing = 10
+        rowStack.backgroundColor = .clear
         return rowStack
     }
 
